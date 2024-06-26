@@ -1,0 +1,130 @@
+/* BASE DE DATOS */
+use colegio_gates
+
+/* TABLA TIPO DOCUMENTOS */
+
+db.createCollection("type_doc");
+db.type_doc.insertMany([
+    { code: "rc", name: "registro civil" },
+    { code: "ti", name: "tarjeta de identidad" },
+    { code: "cc", name: "cedula de ciudadania" }
+]);
+
+/* TABLA SEDE */
+
+db.createCollection("sede");
+db.sede.insertOne({
+    name:"sede principal"
+})
+
+/* TABLA JORNADA */
+
+db.createCollection("jornada");
+db.jornada.insertMany([
+    { code: "m", name: "mañana" },
+    { code: "t", name: "tarde" }
+]);
+
+/* TABLA COORDINADOR */
+
+db.createCollection("coordinador");
+db.coordinador.insertMany([
+    {name:"patricio Estrella",type_doc:"cc",dni:21389216, sede:"sede principal", jornada:"m"},
+    {name:"bob esponja",type_doc:"cc",dni:94282392, sede:"sede principal", jornada:"t"},
+])
+
+/* TABLA BLOQUE */
+
+db.createCollection("bloque");
+db.bloque.insertMany([
+    { code: "A", name: "bloque A" },
+    { code: "B", name: "bloque B" },
+    { code: "C", name: "bloque C" }
+]);
+
+/* TABLA AULA */
+
+db.createCollection("aula");
+db.aula.insertMany([
+    { code: "1", name: "aula 1", bloque: "A"},
+    { code: "2", name: "aula 2", bloque: "B"},
+    { code: "3", name: "aula 3", bloque: "C"},
+    { code: "4", name: "aula 1", bloque: "A"},
+    { code: "5", name: "aula 2", bloque: "B"},
+    { code: "6", name: "aula 3", bloque: "C"}
+]);
+
+/* TABLA GRADO */
+
+db.createCollection("grado");
+db.grado.insertMany([
+    { code: "1", name: "primero" },
+    { code: "2", name: "segundo" },
+    { code: "3", name: "tercero" },
+    { code: "4", name: "cuarto" },
+    { code: "5", name: "quinto" },
+    { code: "6", name: "sexto" },
+    { code: "7", name: "septimo" },
+    { code: "8", name: "octavo" },
+    { code: "9", name: "noveno" },
+    { code: "10", name: "decimo" },
+    { code: "11", name: "once" }
+]);
+
+/* TABLA PROFESORES */
+
+db.createCollection("profesor");
+db.profesor.insertMany([
+    {name: "joaquin hernandez",type_doc: "cc",dni:21389217},
+    {name: "luis perez",type_doc: "cc",dni:21389218},
+    {name: "maria gomez",type_doc: "cc",dni:21389219},
+    {name: "laura hernandez",type_doc: "cc",dni:21389220},
+    {name: "jose gonzalez",type_doc: "cc",dni:21389221},
+])
+
+/* TABLA MATERIAS */
+
+db.createCollection("materia");
+db.materia.insertMany([
+    {name:"matematicas", profesor: "joaquin hernandez"},
+    {name:"español", profesor: "luis perez"},
+    {name:"ciencias", profesor: "maria gomez"},
+    {name:"sociales", profesor: "laura hernandez"},
+    {name:"etica", profesor: "jose gonzalez"},
+])
+
+/* TABLA GRUPOS */
+
+db.createCollection("grupo");
+db.grupo.insertMany([
+    {grado:"1", jornada:"m", aula:"1", grupo: "A", code: "1A"},
+    {grado:"1", jornada:"m", aula:"2", grupo: "B", code: "1B"},
+    {grado:"1", jornada:"m", aula:"3", grupo: "C", code: "1C"},
+    {grado:"2", jornada:"t", aula:"4", grupo: "A", code: "2A"},
+    {grado:"2", jornada:"t", aula:"5", grupo: "B", code: "2B"},
+    {grado:"2", jornada:"t", aula:"6", grupo: "C", code: "2C"},
+])
+
+/* TABLA HORARIOS */
+
+db.createCollection("horario");
+db.horario.insertMany([
+    {materia:"matematicas", grupo: "1A", jornada:"m", aula:"1", hora_inicio:"7:00", hora_fin:"9:00"},
+    {materia:"español", grupo: "1B", jornada:"m", aula:"2", hora_inicio:"9:00", hora_fin:"11:00"},
+    {materia:"ciencias", grupo: "1C", jornada:"m", aula:"3", hora_inicio:"11:00", hora_fin:"1:00"},
+    {materia:"sociales", grupo: "2A", jornada:"t", aula:"4", hora_inicio:"1:00", hora_fin:"3:00"},
+    {materia:"etica", grupo: "2B", jornada:"t", aula:"5", hora_inicio:"3:00", hora_fin:"5:00"},
+    {materia:"matematicas", grupo: "2C", jornada:"t", aula:"6", hora_inicio:"5:00", hora_fin:"7:00"},
+])
+
+/* TABLA ESTUDIANTES */
+
+db.createCollection("estudiante");
+db.estudiante.insertMany([
+    {name: "pedrito martinez", type_doc: "rc", dni: 123456, grupo: "1A"},
+    {name: "juanito perez", type_doc: "ti", dni: 123457, grupo: "1B"},
+    {name: "luisito gomez", type_doc: "cc", dni: 123458, grupo: "1C"},
+    {name: "maria hernandez", type_doc: "cc", dni: 123459, grupo: "2A"},
+    {name: "laura gonzalez", type_doc: "cc", dni: 123460, grupo: "2B"},
+    {name: "josefina perez", type_doc: "cc", dni: 123461, grupo: "2C"},
+])
